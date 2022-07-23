@@ -44,12 +44,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {  
-            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p=> p.CategoryId == categoryId));
+            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p=> p.CategoryID == categoryId));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-           return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductId == productId));
+           return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductID == productId));
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
@@ -62,9 +62,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>( _productDal.GetProductDetails(),Messages.ProductsListed);
         }
 
-        IDataResult<List<Product>> IProductService.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

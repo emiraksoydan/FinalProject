@@ -18,11 +18,11 @@ namespace DataAccess.Concrete.InMemory
             // Oracle,Sql
             _products = new List<Product>
             {
-                new Product{ProductId=1, ProductName="Bardak",CategoryId = 1,UnitPrice = 15,UnitsInStock = 15},
-                new Product{ProductId=2, ProductName="Kamera",CategoryId = 1,UnitPrice = 500,UnitsInStock = 3},
-                new Product{ProductId=3, ProductName="Telefon",CategoryId = 2,UnitPrice = 1500,UnitsInStock = 2},
-                new Product{ProductId=4, ProductName="Klavye",CategoryId = 2,UnitPrice = 150,UnitsInStock = 65},
-                new Product{ProductId=5, ProductName="Mouse",CategoryId = 2,UnitPrice = 85,UnitsInStock = 1}
+                new Product{ProductID=1, ProductName="Bardak",CategoryID = 1,UnitPrice = 15,UnitsInStock = 15},
+                new Product{ProductID=2, ProductName="Kamera",CategoryID = 1,UnitPrice = 500,UnitsInStock = 3},
+                new Product{ProductID=3, ProductName="Telefon",CategoryID = 2,UnitPrice = 1500,UnitsInStock = 2},
+                new Product{ProductID=4, ProductName="Klavye",CategoryID = 2,UnitPrice = 150,UnitsInStock = 65},
+                new Product{ProductID=5, ProductName="Mouse",CategoryID = 2,UnitPrice = 85,UnitsInStock = 1}
             };
         }
         public void Add(Product product)
@@ -35,7 +35,7 @@ namespace DataAccess.Concrete.InMemory
             // LINQ - Language Integrated Query
           
 
-            Product ProductToDelete = _products.SingleOrDefault(p=>p.ProductId == product.ProductId);
+            Product ProductToDelete = _products.SingleOrDefault(p=>p.ProductID == product.ProductID);
             _products.Remove(ProductToDelete);
         }
 
@@ -56,7 +56,7 @@ namespace DataAccess.Concrete.InMemory
 
         public List<Product> GetAllByCategory(int categoryId)
         {
-          return _products.Where(p => p.CategoryId == categoryId).ToList();
+          return _products.Where(p => p.CategoryID == categoryId).ToList();
         }
 
         public List<ProductDetailDto> GetProductDetails()
@@ -67,9 +67,9 @@ namespace DataAccess.Concrete.InMemory
         public void Update(Product product)
         {
             // gönderdiğim ürün idsine sahip olan listedeki elemanı bul
-            Product ProductToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+            Product ProductToUpdate = _products.SingleOrDefault(p => p.ProductID == product.ProductID);
             ProductToUpdate.ProductName = product.ProductName;
-            ProductToUpdate.CategoryId = product.CategoryId;
+            ProductToUpdate.CategoryID = product.CategoryID;
             ProductToUpdate.UnitPrice = product.UnitPrice;
             ProductToUpdate.UnitsInStock = product.UnitsInStock;
 
