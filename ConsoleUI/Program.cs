@@ -13,9 +13,9 @@ ProductMethod();
 //Data Transformation Object
 //CategoryMethod();
 
-static void ProductMethod()
+ void ProductMethod()
 {
-    ProductManager productManager = new ProductManager(new EfProductDal());
+    ProductManager productManager = new ProductManager(new EfProductDal(),new CategoryManager(new EfCategoryDal()));
 
     var result = productManager.GetProductDetails();
 
@@ -39,7 +39,7 @@ static void CategoryMethod()
 {
     CategoryManager category = new CategoryManager(new EfCategoryDal());
 
-    foreach (var item in category.GetAll())
+    foreach (var item in category.GetAll().Data)
     {
         Console.WriteLine(item.CategoryName);
     }
