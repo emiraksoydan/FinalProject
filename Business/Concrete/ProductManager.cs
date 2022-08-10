@@ -29,7 +29,7 @@ namespace Business.Concrete
             _productDal = productDal;
             _categoryService = categoryService;
         }
-        [SecuredOperation("product.add,admin")]
+        [SecuredOperation("product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -45,8 +45,6 @@ namespace Business.Concrete
             }
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
-            
-          
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -82,7 +80,7 @@ namespace Business.Concrete
         private IResult CheckIfProductCategoriesCount(int categoryid)
         {
             var result = _productDal.GetAll(p => p.CategoryID == categoryid).Count;
-            if (result >= 10)
+            if (result <= 10)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
